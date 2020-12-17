@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Brand;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories=Category::orderBy('id','desc')->get();
-        return view('backend.categories.index',compact('categories')); //backend (folder)
+        $brands=Brand::orderBy('id','desc')->get();
+        return view('backend.brands.index',compact('brands')); 
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.categories.create');
+        return view('backend.brands.create');
     }
 
     /**
@@ -36,44 +36,41 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request); //var_dump, die
-        //validation
-
         $request->validate([
             //input name ==> validation rules
             'name'=>'required|min:3', 
-            'photo'=>'required | mimes:jpeg,jpg,png'
+            'logo'=>'required | mimes:jpeg,jpg,png'
         ]);
 
         //upload
         if($request->file()){
             //624872374532_a.jpg
-            $fileName = time().'_'.$request->photo->getClientOriginalName(); //rename photo by time generating 
+            $fileName = time().'_'.$request->logo->getClientOriginalName(); //rename logo by time generating 
             
-            //categoryimg//624872374532_a.jpg
+            //brandimg//624872374532_a.jpg
                                         //input name      //folder name             //storage/app/public
-            $filePath = $request -> file('photo')->storeAs('categoryimg', $fileName,'public'); //create folder
+            $filePath = $request -> file('logo')->storeAs('brandimg', $fileName,'public'); //create folder
 
             $path = '/storage/'.$filePath; //save in storage folder
         }
 
-        $category = new Category; //Category model
+        $brand = new brand; //brand model
 
                 //table-columnname
-        $category->name = $request->name; 
-        $category->photo = $path;
-        $category->save();
+        $brand->name = $request->name; 
+        $brand->logo = $path;
+        $brand->save();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('brands.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Brand $brand)
     {
         //
     }
@@ -81,65 +78,65 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Brand $brand)
     {
-        return view('backend.categories.edit',compact('category'));
+        return view('backend.brands.edit',compact('brand'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, Brand $brand)
     {
         $request->validate([
             //input name ==> validation rules
             'name'=>'required|min:3', 
-            'photo'=>'sometimes | mimes:jpeg,jpg,png'
+            'logo'=>'sometimes | mimes:jpeg,jpg,png'
         ]);
 
         //upload
         if($request->file()){
 
             //624872374532_a.jpg
-            $fileName = time().'_'.$request->photo->getClientOriginalName(); //rename photo by time generating 
+            $fileName = time().'_'.$request->logo->getClientOriginalName(); //rename logo by time generating 
             
-            //categoryimg//624872374532_a.jpg
+            //brandimg//624872374532_a.jpg
                                         //input name      //folder name             //storage/app/public
-            $filePath = $request -> file('photo')->storeAs('categoryimg', $fileName,'public'); //create folder
+            $filePath = $request -> file('logo')->storeAs('brandimg', $fileName,'public'); //create folder
 
             $path = '/storage/'.$filePath; //save in storage folder
 
             //delete old image
-            $category->photo = $path; //if no image update
 
+            $brand->logo = $path; //if no image update
         }
 
                 //table-columnname
-        $category->name = $request->name; 
-        $category->save();
+        $brand->name = $request->name; 
+        $brand->save();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('brands.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Brand  $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Brand $brand)
     {
-         $category->delete();
+        $brand->delete();
         // delete old image
 
         // redirect
-        return redirect()->route('categories.index');
+        return redirect()->route('brands.index');
     }
 }
