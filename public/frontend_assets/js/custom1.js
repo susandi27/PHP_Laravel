@@ -109,10 +109,11 @@ $(document).ready(function(){
                 /*$('#totalAmount').text($total);*/
             }
             else{
+
                 html+=`<div class="col-12"><h5 class="text-center">There are no items in this cart</h5>
                         </div>
                         <div class="col-12 mt-5 ">
-                        <a href="index.php" class="btn btn-secondary mainfullbtncolor px-3" > 
+                        <a href="/" class="btn btn-secondary mainfullbtncolor px-3" > 
                         <i class="icofont-shopping-cart"></i>Continue Shopping </a></div>`
                 $(".table").hide();
                 $(".shoppingcart_div").hide();
@@ -209,14 +210,6 @@ $(document).ready(function(){
 
         //end noti function
 
-       /* function checkout(){
-            $(".checkoutbtn").click(function(){
-                localStorage.clear();
-                showdata();
-                cartnoti();
-            });
-        }
-        checkout();*/
 
 
         //checkout function

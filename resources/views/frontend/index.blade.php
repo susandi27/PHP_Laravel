@@ -74,8 +74,8 @@
                                         <li class="list-inline-item"><i class='bx bxs-star-half' ></i></li>
                                     </ul>
                                 </div>
-
-                                <a href="#" class="addtocartBtn text-decoration-none">Add to Cart</a>
+                                
+                                <a href="#" class="addtocartBtn text-decoration-none" data-id='{{ $item->id }}' data-name='{{ $item->name }}' data-photo='{{ $item->photo }}' data-codeno='{{ $item->codeno }}' data-price='{{ $item->price }}' data-discount='{{ $item->discount }}'>Add to Cart</a>
 
                             </div>
                           
@@ -105,7 +105,7 @@
                         @foreach($flash_items as $flash_item)
                         <div class="item">
                             <div class="pad15">
-                                <a href="{{ route('itemdetailpage',$flash_items->id) }}"><img src="{{ $flash_item->photo }}" class="img-fluid"></a>
+                                <a href="{{ route('itemdetailpage',$flash_item->id) }}"><img src="{{ $flash_item->photo }}" class="img-fluid"></a>
                                 <p class="text-truncate">{{ $flash_item->name }}</p>
                                 <p class="item-price">
                                     @if($flash_item->discount !='' )
@@ -126,7 +126,7 @@
                                     </ul>
                                 </div>
 
-                                <a href="#" class="addtocartBtn text-decoration-none">Add to Cart</a>
+                                <a href="#" class="addtocartBtn text-decoration-none" data-id='{{ $flash_item->id }}' data-name='{{ $flash_item->name }}' data-photo='{{ $flash_item->photo }}' data-codeno='{{ $flash_item->codeno }}' data-price='{{ $flash_item->price }}' data-discount='{{ $flash_item->discount }}'>Add to Cart</a>
                             </div>
                             
                         </div>
@@ -154,7 +154,7 @@
                         @if($fresh_item->subcategory_id == 10)
                         <div class="item">
                             <div class="pad15">
-                                <a href="{{ route('itemdetailpage') }}"><img src="{{ $fresh_item->photo }}" class="img-fluid"></a>
+                                <a href="{{ route('itemdetailpage',$fresh_item->id) }}"><img src="{{ $fresh_item->photo }}" class="img-fluid"></a>
                                 <p class="text-truncate">{{ $fresh_item->name }}</p>
                                 <p class="item-price">
                                     @if($item->discount !='')
@@ -175,7 +175,7 @@
                                     </ul>
                                 </div>
 
-                                <a href="#" class="addtocartBtn text-decoration-none">Add to Cart</a>
+                                <a href="#" class="addtocartBtn text-decoration-none" data-id='{{ $flash_item->id }}' data-name='{{ $fresh_item->name }}' data-photo='{{ $fresh_item->photo }}' data-codeno='{{ $fresh_item->codeno }}' data-price='{{ $fresh_item->price }}' data-discount='{{ $fresh_item->discount }}'>Add to Cart</a>
 
                             </div>
                         </div>

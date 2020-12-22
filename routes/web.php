@@ -22,7 +22,15 @@ use Illuminate\Support\Facades\Route;
 
 //frontend
 Route::get('/','FrontendController@index')->name('homepage');
-Route::get('itemdetail','ItemdetailController@itemdetail')->name('itemdetailpage');
+Route::get('itemdetail/{id}','FrontendController@itemdetail')->name('itemdetailpage');
+
+Route::get('filtersubcategory/{id}','FrontendController@filtersubcategory')->name('filtersubcategorypage');
+
+Route::get('shoppingcart','FrontendController@shoppingcart')->name('shoppingcartpage');
+
+
+
+
 
 
 

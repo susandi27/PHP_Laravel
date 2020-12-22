@@ -90,15 +90,15 @@
                     <i class="icofont-search"></i>
                 </div>
 
-                <a href="" class="text-decoration-none d-xl-inline d-lg-inline d-md-inline d-sm-none d-none shoppingcartLink"> 
+                <a href="{{ route('shoppingcartpage') }}" class="text-decoration-none d-xl-inline d-lg-inline d-md-inline d-sm-none d-none shoppingcartLink"> 
                     <i class="icofont-shopping-cart"></i> 
-                    <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
-                    <span> 4,800 Ks </span>
+                    <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti">  </span>
+                   <span class="cartTotal"> </span>
                 </a>
 
-                <a href="" class="text-decoration-none d-xl-none d-lg-none d-md-none d-sm-inline-block d-inline-block shoppingcartLink"> 
+                <a href="{{ route('shoppingcartpage') }}" class="text-decoration-none d-xl-none d-lg-none d-md-none d-sm-inline-block d-inline-block shoppingcartLink"> 
                     <i class="icofont-shopping-cart"></i>
-                    <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti"> 1 </span>
+                    <span class="badge badge-pill badge-light badge-notify cartNotistyle cartNoti">  </span>
                 </a>
 
                 <!-- App Download -->
@@ -122,25 +122,7 @@
 
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        @foreach($categories as $category)
-                        <li class="dropdown-submenu">
-                            <a class="dropdown-item" href="javascript:void(0)">
-                                {{$category->name}}
-                                <i class="icofont-rounded-right float-right"></i>
-                            </a>
-
-                            <ul class="dropdown-menu">
-                                <h6 class="dropdown-header">
-                                    {{$category->name}}
-                                </h6>
-                                {{--  subcategory က relationship ရေးထားတဲ့ function ရဲ့ name --}}
-                                @foreach($category->subcategory as $subcategory) 
-                                <li><a class="dropdown-item" href="#">{{ $subcategory->name }}</a></li>
-                                @endforeach                          
-                            </ul>
-                        </li>
-                        <div class="dropdown-divider"></div>
-                        @endforeach
+                        <x-subcategory-component></x-subcategory-component>
                     </ul>
                 </div>
             </div>
