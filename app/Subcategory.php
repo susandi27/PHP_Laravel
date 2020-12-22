@@ -12,7 +12,7 @@ class Subcategory extends Model
     //relationship method (many to one)
     public function category()
     {
-    	return $this->belongsto('App\Category');
+    	return $this->belongsTo('App\Category');
     }
    public function item()
     {

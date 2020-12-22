@@ -18,19 +18,25 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 
-/*Route::get('/',  'FirstController@index')->name('homepage');*/
 
-/*Route::get('about',  'FirstController@about')->name('aboutpage');*/
 
+//frontend
+Route::get('/','FrontendController@index')->name('homepage');
+Route::get('itemdetail','ItemdetailController@itemdetail')->name('itemdetailpage');
+
+
+
+//backend
+Route::middleware('role:admin')->group(function(){ //admin မှပေးဝင်
 Route::get('dashboard','BackendController@dashboard')->name('dashboardpage');
-
 Route::resource('categories','CategoryController');
-
 Route::resource('brands','BrandController');
-
 Route::resource('subcategories','SubcategoryController');
-
 Route::resource('items','ItemController');
-Auth::routes();
+});
 
+//Auth
+Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+
+
