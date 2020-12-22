@@ -61,11 +61,9 @@
 		<!-- No Shopping Cart Div -->
 		<div class="row mt-5 noneshoppingcart_div text-center">
 			
-			
 
 		</div>
 	</div>		
-	
 	
 
 @endsection

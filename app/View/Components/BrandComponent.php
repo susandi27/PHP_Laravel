@@ -1,16 +1,13 @@
 <?php
 
 namespace App\View\Components;
+use App\Brand;
 
 use Illuminate\View\Component;
-use App\Category;
-use App\Subcategory;
 
-
-class SubcategoryComponent extends Component
+class BrandComponent extends Component
 {
-    public $categories;
-    public $subcategories;
+    public $brands;    
     /**
      * Create a new component instance.
      *
@@ -18,9 +15,7 @@ class SubcategoryComponent extends Component
      */
     public function __construct()
     {
-        $this->categories= Category::all();
-        $this->subcategories= Subcategory::all();
-
+        $this->brands=Brand::all();
     }
 
     /**
@@ -30,6 +25,6 @@ class SubcategoryComponent extends Component
      */
     public function render()
     {
-        return view('components.subcategory-component');
+        return view('components.brand-component');
     }
 }

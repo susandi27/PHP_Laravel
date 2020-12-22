@@ -29,15 +29,32 @@ class FrontendController extends Controller
        return view('frontend.itemdetail', compact('items'));
     }
 
-    //filter subcategory
-    public function filtersubcategory($id)
+    //filter category
+    public function filtercategory($id)
     {   
         
-        
+        $categories = Category::orderBy('id', 'desc')->get();
+        $subcategories = Subcategory::orderBy('id', 'desc')->get();
+        $brands = Brand::all();
+        $items = Item::all();
+
         $category = Category::find($id);
-        $subcategory = Subcategory::find($id); 
-        /*$brands=Brand::all();*/
-        return view('frontend.filtersubcategory',compact('category','subcategory'));
+        return view('frontend.filtercategory',compact('categories','subcategories','brands','items','category'));
+
+    }
+
+    //filter brand
+
+    public function filterbrand($id)
+    {   
+        
+        $categories = Category::orderBy('id', 'desc')->get();
+        $subcategories = Subcategory::orderBy('id', 'desc')->get();
+        $brands = Brand::all();
+        $items = Item::all();
+
+        $brand = Brand::find($id);
+        return view('frontend.filterbrand',compact('categories','subcategories','items','brands','brand'));
 
     }
 

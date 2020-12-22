@@ -11,11 +11,11 @@ class Item extends Model
     ];
     public function subcategory()
     {
-    	return $this->belongsto('App\Subcategory');
+    	return $this->belongsTo('App\Subcategory');
     }
     public function brand()
     {
-    	return $this->belongsto('App\Brand');
+    	return $this->belongsTo('App\Brand');
     }
     
 }

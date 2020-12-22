@@ -122,7 +122,7 @@
 
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <x-subcategory-component></x-subcategory-component>
+                        <x-category-component></x-category-component>
                     </ul>
                 </div>
             </div>
@@ -138,10 +138,7 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                        @foreach($brands as $brand)
-                        <a class="dropdown-item" href="#">{{$brand->name}}</a>
-                        <div class="dropdown-divider"></div>
-                        @endforeach
+                        <x-brand-component></x-brand-component>
                     </div>
                 </div>
             </div>

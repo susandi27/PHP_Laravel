@@ -24,12 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','FrontendController@index')->name('homepage');
 Route::get('itemdetail/{id}','FrontendController@itemdetail')->name('itemdetailpage');
 
-Route::get('filtersubcategory/{id}','FrontendController@filtersubcategory')->name('filtersubcategorypage');
+Route::get('filtercategory/{id}','FrontendController@filtercategory')->name('filtercategorypage');
+Route::get('filterbrand/{id}','FrontendController@filterbrand')->name('filterbrandpage');
 
 Route::get('shoppingcart','FrontendController@shoppingcart')->name('shoppingcartpage');
-
-
-
 
 
 

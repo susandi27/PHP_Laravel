@@ -4,7 +4,7 @@ $(document).ready(function(){
     cartnoti();
     //checkout();
         $(".addtocartBtn").click(function(){
-            //alert('ok');
+            alert('ok');
             var id=$(this).data('id');
             var codeno=$(this).data('codeno'); 
             var photo=$(this).data('photo');

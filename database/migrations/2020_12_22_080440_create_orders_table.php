@@ -18,9 +18,11 @@ class CreateOrdersTable extends Migration
             $table->date('orderdate');
             $table->unsignedBigInteger('user_id');
             $table->integer('total');
-            $table->smallInteger('status')->default('0');
-            $table->smallInteger('orderno');
-            $table->test('note');
+            $table->smallInteger('status')->default(0);
+            $table->string('orderno');
+            $table->text('note');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
