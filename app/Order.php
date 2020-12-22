@@ -9,4 +9,10 @@ class Order extends Model
     protected $fillable = [
     	'orderdate','user_id','total','status','orderno','note'
     ]
+    public function items()
+    {
+        return $this->belongsToMany('App\Order','orderdetails')
+                    ->withPivot('qty')
+                    ->withTimestamps();
+    }
 }

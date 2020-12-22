@@ -23,10 +23,18 @@ class FrontendController extends Controller
 
         return view('frontend.index', compact('categories', 'subcategories', 'brands', 'items','flash_items','fresh_items'));
     }
+
+    //itemdetail
     public function itemdetail($id)
     {
-       $items = Item::find($id);
-       return view('frontend.itemdetail', compact('items'));
+
+        $categories = Category::orderBy('id', 'desc')->get();
+        $subcategories = Subcategory::orderBy('id', 'desc')->get();
+        $brands = Brand::all();
+        $items = Item::take(4)->get();
+        $item_detail = Item::find($id);
+        return view('frontend.itemdetail',compact('categories','subcategories','brands','items','item_detail'));
+        
     }
 
     //filter category
