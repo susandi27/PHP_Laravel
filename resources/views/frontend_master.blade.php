@@ -81,9 +81,9 @@
                     <div class="col-lg-4 col-10">
                         <a href="{{ route('login') }}" class="d-xl-block d-lg-block d-md-block d-none  text-decoration-none loginLink float-right"> Login | Sign-up </a>                       
                     </div>                   
-                    <div class="col-lg-4 col-10">
+                    {{-- <div class="col-lg-4 col-10">
                             <a href="{{ route('register') }}" class="d-xl-block d-lg-block d-md-block d-none  text-decoration-none loginLink float-right"> {{ __('Register') }} </a> 
-                        </div>
+                    </div> --}}
 
                     @endif
 
@@ -387,7 +387,7 @@
                 </a>
             </div>
 
-            <p class="m-0 text-center text-white">Copyright &copy; <img src="../logo/logo_wh_transparent.png" style="width: 30px; height: 30px"> 2019</p>
+            <p class="m-0 text-center text-white">Copyright &copy; <img src="{{ asset('frontend_assets/logo/logo_wh_transparent.png') }}" style="width: 30px; height: 30px"> 2019</p>
         </div>
     </footer>
 

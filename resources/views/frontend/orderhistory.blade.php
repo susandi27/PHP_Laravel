@@ -28,9 +28,10 @@
             </tr>
           </thead>
           <tbody>
+            @php $j=1; @endphp
             @foreach($orders as $order)
             <tr>
-              <td>1</td>
+              <td>{{ $j++ }}</td>
               <td>{{$order->orderdate}}</td>
               <td>{{$order->total}}</td>
               <td>{{$order->status}}</td>
