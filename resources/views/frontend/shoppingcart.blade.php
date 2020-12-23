@@ -23,7 +23,7 @@
 
 		<div class="row mt-5 shoppingcart_div">
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table shoppingtable">
 					<thead>
 						<tr>
 							<th colspan="3"> Product </th>
@@ -40,17 +40,11 @@
 								<textarea class="form-control" id="notes" placeholder="Any Request..."></textarea>
 							</td>
 							<td colspan="3">
-								<?php
-									if(isset($_SESSION['login_user'])){
-
-								?>
-								<a href="javascript:void(0)" class="btn btn-secondary btn-block mainfullbtncolor checkoutBtn">Check Out </a>
-								
-								<?php }else{ ?> 
-									
-								<a href="#" class="btn btn-secondary btn-block mainfullbtncolor">Check Out </a>
-
-							<?php } ?>
+								@guest
+								<a href="javascript:void(0)" class="btn btn-secondary btn-block mainfullbtncolor checkoutBtn">Login to Check Out</a>
+								@else
+								<a href="javascript:void(0)" class="btn btn-secondary btn-block mainfullbtncolor checkoutBtn">Check Out</a>
+								@endguest
 							</td>
 						</tr>
 					</tfoot>
@@ -63,20 +57,35 @@
 			
 
 		</div>
-	</div>		
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <h5 class="modal-title" id="exampleModalLabel">Successful Modal!</h5>
+		          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		            <span aria-hidden="true">&times;</span>
+		          </button>
+		        </div>
+		        <div class="modal-body">
+		          <div class="col-4">
+						<img src="{{ asset('frontend_assets/image/success-tick-dribbble.gif') }}" class="img-fluid">
+					</div>
+					<div class="col-8 pt-5">
+						<h4> Your order is complete </h4>
+						<p> You order will be delivered in 4 days. </p>
+					</div>
+		        </div>
+		        <div class="modal-footer">
+		          {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> --}}
+		          <a href="{{route('homepage')}}" class="btn btn-primary">OK</a>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+		</div>		
 	
 
 @endsection
 
-@section('script')
-<script type="text/javascript">
-	$(document).ready(function () {
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
-</script>
-
-
-@endsection

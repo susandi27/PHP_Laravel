@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title> Shopules </title>
 
@@ -74,11 +75,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-10">
-                        <a href="" class="d-xl-block d-lg-block d-md-block d-none  text-decoration-none loginLink float-right"> Login | Sign-up </a>
 
-                        
-                    </div>
+                    @guest
+                    @if (Route::has('register'))
+                    <div class="col-lg-4 col-10">
+                        <a href="{{ route('login') }}" class="d-xl-block d-lg-block d-md-block d-none  text-decoration-none loginLink float-right"> Login | Sign-up </a>                       
+                    </div>                   
+                    <div class="col-lg-4 col-10">
+                            <a href="{{ route('register') }}" class="d-xl-block d-lg-block d-md-block d-none  text-decoration-none loginLink float-right"> {{ __('Register') }} </a> 
+                        </div>
+
+                    @endif
+
+                    @else
+                        <div class="col-lg-4 col-10">
+                          <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                              {{ Auth::user()->name }}
+                          </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="{{route('orderhistorypage')}}" class="dropdown-item">Order History</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                           document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                                </a>
+
+                                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                      @csrf
+                                  </form>
+                                </div>    
+                            </div>
+                    @endguest 
+                    
                 </div>
             </div>
             

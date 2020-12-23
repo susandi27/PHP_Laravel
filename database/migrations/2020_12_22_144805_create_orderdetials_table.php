@@ -15,8 +15,8 @@ class CreateOrderdetialsTable extends Migration
     {
         Schema::create('orderdetials', function (Blueprint $table) {
             $table->id();
-            $table->unsignBigInteger('item_id');
-            $table->unsignBigInteger('order_id');
+            $table->unsignedBigInteger('item_id');
+            $table->unsignedBigInteger('order_id');
             $table->integer('qty');
 
             $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');

@@ -115,7 +115,7 @@ $(document).ready(function(){
                         <div class="col-12 mt-5 ">
                         <a href="/" class="btn btn-secondary mainfullbtncolor px-3" > 
                         <i class="icofont-shopping-cart"></i>Continue Shopping </a></div>`
-                $(".table").hide();
+                $(".shoppingtable").hide();
                 $(".shoppingcart_div").hide();
                 $(".noneshoppingcart_div").html(html);
             }
@@ -213,7 +213,7 @@ $(document).ready(function(){
 
 
         //checkout function
-        $('.checkoutBtn').on('click',function(){
+        /*$('.checkoutBtn').on('click',function(){
             var cart=localStorage.getItem("item");
             var note = $('#notes').val();
             var total = 0;
@@ -236,7 +236,7 @@ $(document).ready(function(){
                 console.log(unitprice);
 
                 //ajax
-                $.post('storeorder.php',{
+                $.post('/orders',{
                     carts:cartArray,
                     note:note,
                     total:total
@@ -244,11 +244,30 @@ $(document).ready(function(){
                     localStorage.clear();
                     location.href="ordersuccess.php";
                 });
-            }); //each end
+            }); //each end           
+        })*///end checkout function
+        
 
-            
-        })
-            //end checkout function
-       
+        //checkout button for laravel
+
+        $('.checkoutBtn').on('click',function(){
+            $.ajaxSetup({
+                headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            //alert('ok');
+            let cart=localStorage.getItem("item");
+            let cartArr = JSON.parse(cart);
+             
+            let total = cartArr.reduce((acc, row) => acc + (row.price*row.qty), 0);
+                //console.log(total);
+            let notes = $('#notes').val();
+            $.post("/orders",{cart:cart,notes:notes,total:total},function (response) {
+                //console.log(response)
+                localStorage.clear();
+                $('#exampleModal').modal('show');
+            })
+        }) //checkout end 
 
     }) //end ready function

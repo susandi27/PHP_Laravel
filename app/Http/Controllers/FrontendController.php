@@ -7,7 +7,8 @@ use App\Category;
 use App\Subcategory;
 use App\Brand;
 use App\Item;
-
+use App\Order;
+Use Auth;
 
 class FrontendController extends Controller
 {
@@ -73,10 +74,18 @@ class FrontendController extends Controller
         $subcategories = Subcategory::orderBy('id', 'desc')->get();
         $brands = Brand::all();
         $items = Item::all();
-
-        
-        
         return view('frontend.shoppingcart', compact('categories', 'subcategories', 'brands', 'items'));
 
+    }
+
+    public function orderhistory($value='')
+    {
+        $categories = Category::orderBy('id', 'desc')->get();
+        $subcategories = Subcategory::orderBy('id', 'desc')->get();
+        $brands = Brand::all();
+        $items = Item::all();
+
+        $orders = Order::where('user_id',Auth::id())->orderBy('id','desc')->get();
+        return view('frontend.orderhistory',compact('categories','subcategories','brands','items','orders'));
     }
 }
