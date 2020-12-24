@@ -90,8 +90,9 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        $order->id = $request->id;
-        $order->status = $request->status;
+        //dd($order);
+        //dd($request);
+        $order->status = 1;
         $order->save();
         return redirect()->route('orders.index');
     }

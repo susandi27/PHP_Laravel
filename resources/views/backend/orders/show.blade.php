@@ -59,8 +59,8 @@
                 </div>
               </div>
               <div class="col-12 text-right">
-                 <form method="post" action="{{route('categories.update',$order->id)}}" class="d-inline-block">
-                    <a class="btn btn-primary" href="#" target="_blank">Cofirm</a>
+                 <form method="post" action="{{route('orders.update',$order->id)}}" class="d-inline-block" enctype="multipart/form-data">
+                    <button class="btn btn-primary" type="submit">Confirm</button>
                     @csrf
                     @method('PUT')
                   </form>
